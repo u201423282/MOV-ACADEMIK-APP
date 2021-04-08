@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="">
+        <menu>
+            <item android:id="@+id/perfil"
+                android:icon="@drawable/ic_mi_perfil"
+                android:title="Mi Perfil">
+            </item>
+            <item android:id="@+id/curso"
+                android:icon="@drawable/ic_mi_curso"
+                android:title="Mi Cursos">
+            </item>
+            <item android:id="@+id/nota"
+                android:icon="@drawable/ic_mi_nota"
+                android:title="Mi Calificaciones">
+            </item>
+            <item android:id="@+id/horario"
+                android:icon="@drawable/ic_mi_horario"
+                android:title="Mi Horario">
+            </item>
+            <item android:id="@+id/comunicado"
+                android:icon="@drawable/ic_mi_comunicado"
+                android:title="Mis Comunicados">
+            </item>
+            <item android:id="@+id/ubicacion"
+                android:icon="@drawable/ic_mi_ubicacion"
+                android:title="Ubicanos">
+            </item>
+            <item android:id="@+id/contacto"
+                android:icon="@drawable/ic_mi_contacto"
+                android:title="Contactanos">
+            </item>
+
+        </menu>
+
+    </item>
+</menu>

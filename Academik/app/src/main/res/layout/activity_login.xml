@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textSize="36sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="50dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="ACADEMIK" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        android:hint="Ingresar Codigo de Alumno"
+        android:text="" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="24sp"
+        android:hint="Ingresar Password"
+        android:layout_marginTop="5dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:onClick="f_login"
+        android:layout_marginTop="20dp"
+        android:textSize="24sp"
+        android:text="Ingresar" />
+
+</LinearLayout>
