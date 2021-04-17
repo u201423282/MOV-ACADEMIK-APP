@@ -23,10 +23,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/etUsuario"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="24sp"
-        android:hint="Ingresar Codigo de Alumno"
+        android:hint="Ingresar Usuario de Alumno"
         android:text="" />
 
     <EditText
@@ -34,6 +35,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:textSize="24sp"
+        android:id="@+id/etPassword"
         android:hint="Ingresar Password"
         android:layout_marginTop="5dp"
         android:inputType="textPassword" />
@@ -46,5 +48,13 @@
         android:layout_marginTop="20dp"
         android:textSize="24sp"
         android:text="Ingresar" />
+
+    <TextView
+        android:id="@+id/msgLogueo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
+        android:text="" />
 
 </LinearLayout>

@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/viewCabecera">
 
     <TextView
+        android:id="@+id/cbNombrealumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#555352"
@@ -16,7 +18,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/cbCodigoalumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#FFF"
