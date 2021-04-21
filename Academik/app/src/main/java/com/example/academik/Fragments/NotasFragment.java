@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -175,19 +176,6 @@ public class NotasFragment extends Fragment {
                         datosEvento.put("Desc4", objectEva4.getString("criterio"));
                         datosEvento.put("Nota4", objectEva4.getString("valor"));
 
-                        JSONObject objectEva5 = evaluaciones.getJSONObject(4);
-                        datosEvento.put("Desc5", objectEva5.getString("criterio"));
-                        datosEvento.put("Nota5", objectEva5.getString("valor"));
-
-                        JSONObject objectEva6 = evaluaciones.getJSONObject(5);
-                        datosEvento.put("Desc6", objectEva6.getString("criterio"));
-                        datosEvento.put("Nota6", objectEva6.getString("valor"));
-
-                        JSONObject objectEva7 = evaluaciones.getJSONObject(6);
-                        datosEvento.put("Desc7", objectEva7.getString("criterio"));
-                        datosEvento.put("Nota7", objectEva7.getString("valor"));
-
-
                         //}
                         eventos.add(datosEvento);
                     }
@@ -210,5 +198,6 @@ public class NotasFragment extends Fragment {
         );
         mQueue2= Volley.newRequestQueue(getActivity().getApplicationContext());
         mQueue2.add(stringRequest);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
     }
 }

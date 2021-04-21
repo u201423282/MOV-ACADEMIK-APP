@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -93,6 +94,7 @@ public class CursosFragment extends Fragment {
         );
         mQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
         mQueue.add(stringRequest);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
     }
 
 }

@@ -20,6 +20,7 @@ public class Util {
         editor.putString("seccion",info.getSeccion());
         editor.putString("telefono",info.getTelefono());
         editor.putString("correoalumno", info.getCorreoAlumno());
+        editor.putString("idpersona", info.getIdPersona());
         editor.commit();
     }
 
