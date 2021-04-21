@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -168,6 +169,8 @@ public class PerfilEditFragment extends Fragment {
             };
             RequestQueue requestQueue = Volley.newRequestQueue(this.getContext());
             requestQueue.add(stringRequest);
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

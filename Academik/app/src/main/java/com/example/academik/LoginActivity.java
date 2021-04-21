@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                                              infoSesion.setSeccion(objeto.getString("seccion"));
                                              infoSesion.setTelefono(objeto.getString("telefono"));
                                              infoSesion.setCorreoAlumno(objeto.getString("correoPersonal"));
+                                             infoSesion.setIdPersona(idPersona);
                                              Util.guardarInformacionAlumno(prefs, infoSesion);
                                              Intent i = new Intent(context, MenuNavigateActivity.class);
                                              i.putExtra("TOKEN", idPersona);
@@ -156,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
     }
 
 }
