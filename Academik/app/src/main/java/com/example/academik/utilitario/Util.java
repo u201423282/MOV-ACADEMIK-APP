@@ -21,6 +21,9 @@ public class Util {
         editor.putString("telefono",info.getTelefono());
         editor.putString("correoalumno", info.getCorreoAlumno());
         editor.putString("idpersona", info.getIdPersona());
+        editor.putString("coordenadax", info.getCordenada_x());
+        editor.putString("coordenaday", info.getCordenada_y());
+        editor.putString("telefenoSede", info.getTelefonoSede());
         editor.commit();
     }
 

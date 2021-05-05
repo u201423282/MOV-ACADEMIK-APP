@@ -1,0 +1,39 @@
+{
+  "storage": {
+    "plugins": {
+      "awsS3StoragePlugin": {
+        "bucket": "storebucketacademik233828-test",
+        "region": "us-east-2"
+      }
+    }
+  },
+  "auth": {
+    "plugins": {
+      "awsCognitoAuthPlugin": {
+        "IdentityManager": {
+          "Default": {}
+        },
+        "CredentialsProvider": {
+          "CognitoIdentity": {
+            "Default": {
+              "PoolId": "us-east-2:12e952ba-9c2f-48d5-ad79-66f4f09df554",
+              "Region": "us-east-2"
+            }
+          }
+        },
+        "CognitoUserPool": {
+          "Default": {
+            "PoolId": "us-east-2_8mB9RdTMH",
+            "AppClientId": "56s0fd2h0eg2g6fr8n62o9o3mt",
+            "Region": "us-east-2"
+          }
+        },
+        "Auth": {
+          "Default": {
+            "authenticationFlowType": "USER_SRP_AUTH"
+          }
+        }
+      }
+    }
+  }
+}

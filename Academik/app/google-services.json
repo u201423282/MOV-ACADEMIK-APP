@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "687791021492",
+    "project_id": "appacademmik",
+    "storage_bucket": "appacademmik.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687791021492:android:5840c8eddfa6c554c4e6e1",
+        "android_client_info": {
+          "package_name": "com.example.academik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687791021492-7f52hh5juoqv90i5g6iquenf4phr1u1o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.academik",
+            "certificate_hash": "059f8d9055f107b4229e9708ca40557ce1efc2af"
+          }
+        },
+        {
+          "client_id": "687791021492-k3m19ql9cemkcrfj1crlpm51p71h6bcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIASK9SiAwYHeMNCPNVGjgZViCLfbrW-w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687791021492-k3m19ql9cemkcrfj1crlpm51p71h6bcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

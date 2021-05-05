@@ -7,10 +7,10 @@
     android:id="@+id/viewCabecera">
 
     <TextView
-        android:id="@+id/cbNombrealumno"
+        android:id="@+id/ctvNombreAlumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#555352"
+        android:background="@color/color_01"
         android:padding="20dp"
         android:text="Nombre de Alumno"
         android:textColor="#FFF"
@@ -18,11 +18,11 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/cbCodigoalumno"
+        android:id="@+id/ctvCodigoAlumno"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#FFF"
-        android:background="#555352"
+        android:background="@color/color_01"
         android:paddingLeft="20dp"
         android:text="Codigo de Alumno" />
 
@@ -30,7 +30,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#555352"
+        android:background="@color/color_01"
         android:text="" />
 
 </LinearLayout>

@@ -10,10 +10,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,36 +30,29 @@ import com.example.academik.Fragments.PerfilFragment;
 import com.example.academik.Fragments.UbicanosFragment;
 import com.google.android.material.navigation.NavigationView;
 
+import org.w3c.dom.Text;
+
 public class MenuNavigateActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout menuLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     Toolbar toolbar;
     NavigationView navigationView;
-    LinearLayout cabeceraView;
+
     // Variables para cargar el fragment principal
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_navigate);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        TextView nombre = (TextView) findViewById(R.id.cbNombrealumno);
-        TextView codigo = (TextView) findViewById(R.id.cbCodigoalumno);
 
-        SharedPreferences prefs = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
-        String nombreShared = prefs.getString("nombre", "");
-        String codigoShared = prefs.getString("codigo", "");
-
-        nombre.setText(nombreShared);
-        codigo.setText(codigoShared);*/
-
-        //Cargar Fragment Principal
+        //CARGAR DATOS DEL FRAGMENT PRINCIPAL
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.container, new PerfilFragment());
@@ -64,13 +61,19 @@ public class MenuNavigateActivity extends AppCompatActivity implements Navigatio
         menuLayout = findViewById(R.id.menuDesplegable);
         navigationView = findViewById(R.id.navigationView);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,menuLayout,toolbar,R.string.open,R.string.close);
-
         navigationView.setNavigationItemSelectedListener(this);
-
         menuLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.setDrawerIndicatorEnabled(true);
         actionBarDrawerToggle.syncState();
 
+        //CARGAR DATOS DEL PERFIL.
+        TextView codigo = navigationView.getHeaderView(0).findViewById(R.id.ctvCodigoAlumno);
+        TextView nombre = navigationView.getHeaderView(0).findViewById(R.id.ctvNombreAlumno);
+        SharedPreferences prefs = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+        String nombreShared = prefs.getString("nombre", "");
+        String codigoShared = prefs.getString("codigo", "");
+        nombre.setText(nombreShared);
+        codigo.setText(codigoShared);
 
     }
 
@@ -79,48 +82,39 @@ public class MenuNavigateActivity extends AppCompatActivity implements Navigatio
         menuLayout.closeDrawer(GravityCompat.START);
         Log.i("---->",""  + item.getItemId());
 
-        if(item.getItemId() == R.id.perfil){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new PerfilFragment());
-            fragmentTransaction.commit();
-        }
-        if(item.getItemId() == R.id.curso){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new CursosFragment());
-            fragmentTransaction.commit();
-        }
-        if(item.getItemId() == R.id.nota){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new NotasFragment());
-            fragmentTransaction.commit();
-        }
-        if(item.getItemId() == R.id.horario){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new HorarioFragment());
-            fragmentTransaction.commit();
-        }
-        if(item.getItemId() == R.id.comunicado){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new ComunicadosFragment());
-            fragmentTransaction.commit();
-        }
-        if(item.getItemId() == R.id.ubicacion){
-            fragmentManager = getSupportFragmentManager();
-            fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new UbicanosFragment());
-            fragmentTransaction.commit();
-        }
         if(item.getItemId() == R.id.contacto){
+            SharedPreferences prefs = getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+            String telefonoSede = prefs.getString("telefenoSede", "");
+
+            Intent i = new Intent(Intent.ACTION_DIAL);
+            i.setData(Uri.parse("tel:"+telefonoSede));
+            startActivity(i);
+        }
+        else{
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+
+            if(item.getItemId() == R.id.perfil){
+                fragmentTransaction.replace(R.id.container, new PerfilFragment());
+            }
+            if(item.getItemId() == R.id.curso){
+                fragmentTransaction.replace(R.id.container, new CursosFragment());
+            }
+            if(item.getItemId() == R.id.nota){
+                fragmentTransaction.replace(R.id.container, new NotasFragment());
+            }
+            if(item.getItemId() == R.id.horario){
+                fragmentTransaction.replace(R.id.container, new HorarioFragment());
+            }
+            if(item.getItemId() == R.id.comunicado){
+                fragmentTransaction.replace(R.id.container, new ComunicadosFragment());
+            }
+            if(item.getItemId() == R.id.ubicacion){
+                fragmentTransaction.replace(R.id.container, new UbicanosFragment());
+            }
+            fragmentTransaction.commit();
 
         }
-
-
-
 
         return false;
     }
