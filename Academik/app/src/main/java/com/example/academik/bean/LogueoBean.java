@@ -9,17 +9,48 @@ public class LogueoBean {
     private String seccion;
     private String telefono;
     private String correoAlumno;
+    private String cordenada_x;
+    private String cordenada_y;
+    private String telefonoSede;
 
-    public void setCorreoAlumno(String correoAlumno) {
-        this.correoAlumno = correoAlumno;
+    public String getTelefonoSede() {
+        return telefonoSede;
+    }
+
+    public void setTelefonoSede(String telefonoSede) {
+        this.telefonoSede = telefonoSede;
+    }
+
+    public String getCordenada_x() {
+        return cordenada_x;
+    }
+
+    public void setCordenada_x(String cordenada_x) {
+        this.cordenada_x = cordenada_x;
+    }
+
+    public String getCordenada_y() {
+        return cordenada_y;
+    }
+
+    public void setCordenada_y(String cordenada_y) {
+        this.cordenada_y = cordenada_y;
     }
 
     public String getCorreoAlumno() {
         return correoAlumno;
     }
 
+    public void setCorreoAlumno(String correoAlumno) {
+        this.correoAlumno = correoAlumno;
+    }
+
     public String getIdPersona() {
         return idPersona;
+    }
+
+    public void setIdPersona(String idPersona) {
+        this.idPersona = idPersona;
     }
 
     public String getTelefono() {
@@ -28,10 +59,6 @@ public class LogueoBean {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public void setIdPersona(String idPersona) {
-        this.idPersona = idPersona;
     }
 
     public String getSeccion() {

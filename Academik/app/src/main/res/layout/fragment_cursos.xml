@@ -7,9 +7,9 @@
     android:orientation="vertical"
     android:paddingTop="60dp">
 
-    <ListView
-        android:id="@+id/lstDiaDetalle"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCursos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -20,41 +20,57 @@
         android:textAlignment="center"
         android:text="ACADEMIK" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Usuario"
+        app:startIconContentDescription="Usuario"
+        app:startIconDrawable="@drawable/ic_codigo"
+        android:layout_margin="10dp">
+    <EditText
         android:id="@+id/etUsuario"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:textSize="24sp"
-        android:hint="Ingresar Usuario de Alumno"
-        android:text="" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:textSize="24sp"
+        android:background="#FFF"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tfLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        app:startIconContentDescription="Password"
+        app:startIconDrawable="@drawable/ic_password"
+        app:endIconMode="password_toggle"
+        android:layout_margin="10dp">
+    <EditText
         android:id="@+id/etPassword"
-        android:hint="Ingresar Password"
-        android:layout_marginTop="5dp"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFF"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#000000"
         android:onClick="f_login"
-        android:layout_marginTop="20dp"
-        android:textSize="24sp"
-        android:text="Ingresar" />
+        android:layout_marginTop="10dp"
+        android:text="Ingresar"
+        app:icon="@drawable/ic_login"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        />
 
     <TextView
         android:id="@+id/msgLogueo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textAlignment="center"
-        android:text="" />
+        android:layout_marginTop="20dp"
+        android:textColor="#C51A1A"
+        android:textAlignment="center" />
 
 </LinearLayout>

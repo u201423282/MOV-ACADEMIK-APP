@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="60dp">
+    android:background="@color/design_default_color_primary_dark"
+    tools:context=".HorarioActivity">
 
     <LinearLayout
         android:layout_width="426dp"
-        android:layout_height="300dp"
+        android:layout_height="567dp"
         android:background="@color/white">
 
         <CalendarView
-            android:id="@+id/cvHorario"
             android:layout_width="407dp"
+            android:id="@+id/cvHorario"
             android:layout_height="wrap_content">
 
 
@@ -22,18 +22,5 @@
 
 
     </LinearLayout>
-
-
-    <ListView
-        android:id="@+id/lsCursos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_span="2"
-        android:layout_weight="1"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
-
-
+    
 </LinearLayout>

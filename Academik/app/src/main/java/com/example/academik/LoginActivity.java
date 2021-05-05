@@ -40,11 +40,19 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().show();
+        getSupportActionBar().hide();
         context = this;
         setContentView(R.layout.activity_login);
 
     }
+/*
+    public void f_login(View v){
+        Intent i = new Intent(this,MenuNavigateActivity.class);
+        i.putExtra("TOKEN","123456");
+
+        startActivity(i);
+    }
+*/
 
     public void f_login(View v) {
 
@@ -81,6 +89,9 @@ public class LoginActivity extends AppCompatActivity {
                                              infoSesion.setTelefono(objeto.getString("telefono"));
                                              infoSesion.setCorreoAlumno(objeto.getString("correoPersonal"));
                                              infoSesion.setIdPersona(idPersona);
+                                             infoSesion.setCordenada_x(objeto.getString("coordenadax"));
+                                             infoSesion.setCordenada_y(objeto.getString("coordenaday"));
+                                             infoSesion.setTelefonoSede(objeto.getString("telefonoSede"));
                                              Util.guardarInformacionAlumno(prefs, infoSesion);
                                              Intent i = new Intent(context, MenuNavigateActivity.class);
                                              i.putExtra("TOKEN", idPersona);
@@ -160,5 +171,6 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
     }
+
 
 }

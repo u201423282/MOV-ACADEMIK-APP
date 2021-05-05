@@ -1,5 +1,6 @@
 package com.example.academik.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -33,94 +34,20 @@ import java.util.HashMap;
 public class NotasFragment extends Fragment {
     private ListView lv2;
     private RequestQueue mQueue2;
+    ProgressDialog progressDialog;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_notas,container,false);
 
-        /*String[] from = new String[] { "Nombre",
-                "Desc1",
-                "Nota1",
-                "Desc2",
-                "Nota2",
-                "Desc3",
-                "Nota3",
-                "Desc4",
-                "Nota4",
-                "Desc5",
-                "Nota5",
-                "Desc6",
-                "Nota6",
-                "Desc7",
-                "Nota7"
-        };
-
-        int[] to = new int[] {
-                R.id.tvNotaCursoNombre,
-                R.id.tvNotaDescripcion1,
-                R.id.tvNotaCalificacion1,
-                R.id.tvNotaDescripcion2,
-                R.id.tvNotaCalificacion2,
-                R.id.tvNotaDescripcion3,
-                R.id.tvNotaCalificacion3,
-                R.id.tvNotaDescripcion4,
-                R.id.tvNotaCalificacion4,
-                R.id.tvNotaDescripcion5,
-                R.id.tvNotaCalificacion5,
-                R.id.tvNotaDescripcion6,
-                R.id.tvNotaCalificacion6,
-                R.id.tvNotaDescripcion7,
-                R.id.tvNotaCalificacion7
-        };
-
-        ArrayList<String[]> lista = new ArrayList<String[]>();
-
-        String[] evento1 = { "Karate", "Examen Enero", "15.00", "Examen Febrero", "15.00", "Examen Marzo", "15.00","Examen 4", "15.00","Examen 5", "15.00" ,"Examen 6", "15.00" ,"Examen 7", "15.00"   };
-        String[] evento2 = { "Ingles", "Examen Enero", "15.50", "Examen Febrero", "13.00", "Examen Marzo", "18.00" ,"Examen 4", "15.00","Examen 5", "15.00" ,"Examen 6", "15.00" ,"Examen 7", "15.00"};
-        String[] evento3 = { "Biologia", "Examen Enero", "15.00", "Examen Febrero", "15.00", "Examen Marzo", "15.00" ,"Examen 4", "15.00","Examen 5", "15.00" ,"Examen 6", "15.00" ,"Examen 7", "15.00"};
-
-        lista.add(evento1);
-        lista.add(evento2);
-        lista.add(evento3);
-
-        ArrayList<HashMap<String, String>> eventos = new ArrayList<HashMap<String, String>>();
-
-        for (String[] evento : lista) {
-            HashMap<String, String> datosEvento = new HashMap<String, String>();
-
-            datosEvento.put("Nombre", evento[0]);
-            datosEvento.put("Desc1", evento[1]);
-            datosEvento.put("Nota1", evento[2]);
-            datosEvento.put("Desc2", evento[3]);
-            datosEvento.put("Nota2", evento[4]);
-            datosEvento.put("Desc3", evento[5]);
-            datosEvento.put("Nota3", evento[6]);
-
-            datosEvento.put("Desc4", evento[7]);
-            datosEvento.put("Nota4", evento[8]);
-
-            datosEvento.put("Desc5", evento[9]);
-            datosEvento.put("Nota5", evento[10]);
-
-            datosEvento.put("Desc6", evento[11]);
-            datosEvento.put("Nota6", evento[12]);
-
-            datosEvento.put("Desc7", evento[13]);
-            datosEvento.put("Nota7", evento[14]);
-
-            eventos.add(datosEvento);
-        }
-
-        SimpleAdapter listadoAdapter = new SimpleAdapter(getActivity().getApplicationContext(), eventos, R.layout.fragment_notas_datos, from, to);
-        */
         lv2 = (ListView) view.findViewById(R.id.lstNotasDetalle);
-        invoke();
+        cargarCalificaciones();
         return view;
     }
 
 
-    private void invoke(){
+    private void cargarCalificaciones(){
 
         SharedPreferences prefs = this.getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
         String idpersona = prefs.getString("idpersona", "");
@@ -182,7 +109,7 @@ public class NotasFragment extends Fragment {
 
                     SimpleAdapter listadoAdapter = new SimpleAdapter(getActivity().getApplicationContext(),
                             eventos, R.layout.fragment_notas_datos, from, to);
-
+                    progressDialog.dismiss();
                     lv2.setAdapter(listadoAdapter);
                 } catch (JSONException e) {
                     Log.i("======>", e.getMessage());
@@ -193,11 +120,17 @@ public class NotasFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.i("======>", error.toString());
+                        progressDialog.dismiss();
                     }
                 }
         );
         mQueue2= Volley.newRequestQueue(getActivity().getApplicationContext());
         mQueue2.add(stringRequest);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setTitle("Calificaciones");
+        progressDialog.setMessage("Cargando Calificaciones...");
+        progressDialog.show(); // Display Progress Dialog
+        progressDialog.setCancelable(false);
     }
 }

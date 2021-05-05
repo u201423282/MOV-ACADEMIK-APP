@@ -15,107 +15,122 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="" />
-
-            <Button
-                android:id="@+id/btnLinkPerfil"
-                android:layout_width="wrap_content"
+            <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
-                android:backgroundTint="#000000"
-                android:text="Editar" />
+                android:orientation="horizontal" >
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    app:srcCompat="@android:mipmap/sym_def_app_icon" />
+                <Button
+                    android:id="@+id/btnLinkPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:drawableLeft="@drawable/ic_edit"
+                    android:backgroundTint="#FFF"
+                    android:textStyle="bold"
+                    android:textColor="#A9A9A9"
+                    android:text="Editar" />
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                app:srcCompat="@android:mipmap/sym_def_app_icon" />
-
-            <TextView
-                android:id="@+id/textView7"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Codigo Alumno" />
-
+                android:hint="Codigo"
+                app:startIconDrawable="@drawable/ic_codigo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
             <EditText
                 android:id="@+id/etCodigoAlumno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:enabled="false"
-                android:inputType="textPersonName"
-                android:text="" />
+                android:background="#FFF"
+                android:textColor="#000"
+                android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView5"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sede" />
-
-            <EditText
-                android:id="@+id/etSede"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:enabled="false"
-                android:text="" />
-            <TextView
-                android:id="@+id/tvSeccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Seccion" />
-            <EditText
-                android:id="@+id/etSeccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:enabled="false"
-                android:text="" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nombres y Apellidos" />
-
+                android:hint="Nombre"
+                app:startIconDrawable="@drawable/ic_mi_perfil"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
             <EditText
                 android:id="@+id/etNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:enabled="false"
-                android:text="" />
+                android:background="#FFF"
+                android:textColor="#000"
+                android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/textView4"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Telefono" />
+                android:hint="Sede"
+                app:startIconDrawable="@drawable/ic_mi_ubicacion"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+            <EditText
+                android:id="@+id/etSede"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:textColor="#000"
+                android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sección"
+                app:startIconDrawable="@drawable/ic_seccion"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+            <EditText
+                android:id="@+id/etSeccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:textColor="#000"
+                android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Telefono"
+                app:startIconDrawable="@drawable/ic_mi_contacto"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
             <EditText
                 android:id="@+id/etTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:enabled="false"
-                android:text="" />
-            <TextView
-                android:id="@+id/textView9"
+                android:background="#FFF"
+                android:textColor="#000"
+                android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Correo" />
-
+                android:hint="Correo"
+                app:startIconDrawable="@drawable/ic_email"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
             <EditText
                 android:id="@+id/etCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:enabled="false"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="" />
+                android:background="#FFF"
+                android:textColor="#000"
+                android:enabled="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
 </LinearLayout>
