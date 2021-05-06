@@ -65,7 +65,7 @@ public class HorarioFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_horario,container,false);
 
         CalendarView simpleCalendarView = (CalendarView) view.findViewById(R.id.cvHorario);
-        simpleCalendarView.setDate(new Date().getTime(),false,true);
+        //simpleCalendarView.setDate(new Date().getTime(),false,true);
         Date myDate = new Date(simpleCalendarView.getDate());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(myDate);
@@ -73,71 +73,81 @@ public class HorarioFragment extends Fragment {
         Date newDate = calendar.getTime();
         simpleCalendarView.setMaxDate(newDate.getTime());
         lsCursos = (ListView) view.findViewById(R.id.lsCursos);
-        SharedPreferences prefs = this.getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
-        String idpersona = prefs.getString("idpersona", "");
-
         simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
         public void onSelectedDayChange(CalendarView view, int year, int month,
             int dayOfMonth) {
-                try {
-                String sDate1= dayOfMonth+"/"+month+"/"+year;
-                Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
-                String dayWeekText = new SimpleDateFormat("EEEE").format(date1);
-
-                String dayOfWeek = SemanaEnum.fromValue(dayWeekText.toUpperCase()).toStringAnotherValue();
-
-                String url = "http://20.83.224.206:8081/v1/horario/obtenerHorarioPorDia/"+idpersona+"/"+dayOfWeek;
-
-                        StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                try {
-                                    JSONArray jsonArray = new JSONArray(response);
-                                    String[] matriz = new String[jsonArray!=null && jsonArray.length()>0?jsonArray.length()*2:1];
-                                    int index = 0;
-                                    for (int i=0; i<jsonArray.length(); i++){
-                                        JSONObject object = jsonArray.getJSONObject(i);
-                                        matriz[index] = object.getString("curso").toUpperCase();
-                                        index++;
-                                        matriz[index] = "Profesor "+object.getString("profesor") + " De: "+object.getString("horainicio")+" A: "+object.getString("horafin") +"Hrs";
-
-                                        index++;
-
-                                    }
-
-                                    if(index == 0){
-                                        matriz[index] = "No tiene cursos asignados";
-                                    }
-
-                                    ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(),
-                                            android.R.layout.simple_list_item_1,
-                                            matriz);
-
-                                    lsCursos.setAdapter(adaptador);
-
-                                } catch (JSONException e) {
-                                    Log.i("======>", e.getMessage());
-                                }
-                            }
-                        },
-                                new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        Log.i("======>", error.toString());
-                                    }
-                                }
-                        );
-                        mQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-                        mQueue.add(stringRequest);
-                        stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
-
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                obtenerHorarios(year, month,dayOfMonth);
             }
         });
+
+        Calendar calendarActual = Calendar.getInstance();
+        calendarActual.setTime(new Date());
+        obtenerHorarios(calendarActual.get(Calendar.YEAR), calendarActual.get(Calendar.MONTH), calendarActual.get(Calendar.DAY_OF_MONTH));
         return view;
+    }
+
+    public void obtenerHorarios(int year, int month,
+                                int dayOfMonth){
+        try {
+            SharedPreferences prefs = this.getActivity().getSharedPreferences("PREFERENCIAS", Context.MODE_PRIVATE);
+            String idpersona = prefs.getString("idpersona", "");
+
+            String sDate1= dayOfMonth+"/"+(month+1)+"/"+year;
+            Log.i("FECHA SELECCIONADA" , sDate1);
+            Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(sDate1);
+            String dayWeekText = new SimpleDateFormat("EEEE").format(date1);
+
+            String dayOfWeek = SemanaEnum.fromValue(dayWeekText.toUpperCase()).toStringAnotherValue();
+
+            String url = "http://20.83.224.206:8081/v1/horario/obtenerHorarioPorDia/"+idpersona+"/"+dayOfWeek;
+
+            StringRequest stringRequest= new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONArray jsonArray = new JSONArray(response);
+                        String[] matriz = new String[jsonArray!=null && jsonArray.length()>0?jsonArray.length()*2:1];
+                        int index = 0;
+                        for (int i=0; i<jsonArray.length(); i++){
+                            JSONObject object = jsonArray.getJSONObject(i);
+                            matriz[index] = object.getString("curso").toUpperCase();
+                            index++;
+                            matriz[index] = "Profesor "+object.getString("profesor") + " De: "+object.getString("horainicio")+" A: "+object.getString("horafin") +"Hrs";
+
+                            index++;
+
+                        }
+
+                        if(index == 0){
+                            matriz[index] = "No tiene cursos asignados";
+                        }
+
+                        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity().getApplicationContext(),
+                                android.R.layout.simple_list_item_1,
+                                matriz);
+
+                        lsCursos.setAdapter(adaptador);
+
+                    } catch (JSONException e) {
+                        Log.i("======>", e.getMessage());
+                    }
+                }
+            },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.i("======>", error.toString());
+                        }
+                    }
+            );
+            mQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
+            mQueue.add(stringRequest);
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(30 * 1000, 1, 1.0f));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 }

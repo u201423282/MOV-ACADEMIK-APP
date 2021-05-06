@@ -97,9 +97,6 @@ public class PerfilEditFragment extends Fragment {
 
     public Context context = this.getContext();
 
-    private final String KEY = "AKIATY5C673YI5MOTQ5Q";
-    private final String SECRET = "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";
-
     ProgressDialog progressDialog;
     @Nullable
     @Override
